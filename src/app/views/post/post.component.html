@@ -1,0 +1,118 @@
+<app-header></app-header>
+<h2>Post Form</h2>
+<p>Resize the browser window to see the effect. When the screen is less than 600px wide, make the two columns stack on
+  top of each other instead of next to each other.</p>
+<div *ngFor="let cate of category">{{cate.name}}</div>
+<div class="container">
+  <form [formGroup]='formdata'>
+    <div class="row">
+      <div class="col-25">
+        <label for="fname">Name</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="fname" name="name" formControlName="name">
+      </div>
+      <div *ngIf="formdata.controls.name.invalid && (formdata.controls.name.dirty || formdata.controls.name.touched)">
+
+        <div *ngIf="formdata.controls.name.errors.required" style="color:red">
+          Name is required.
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="country">Category</label>
+      </div>
+      <div class="col-75">
+        <select id="country" name="country" name="category" formControlName="category">
+          <option *ngFor="let cate of category" value="{{cate.id_category}}">{{cate.name}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="fname">First Price</label>
+      </div>
+      <div class="col-75">
+        <input type="Number" id="fname" name="firstPrice" formControlName="firstPrice">
+      </div>
+      <div *ngIf="formdata.controls.firstPrice.invalid && (formdata.controls.firstPrice.dirty || formdata.controls.firstPrice.touched)">
+
+        <div *ngIf="formdata.controls.firstPrice.errors.required" style="color:red">
+          First price is required.
+        </div>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="fname">Step Price</label>
+      </div>
+      <div class="col-75">
+        <input type="Number" id="fname" name="stepPrice" formControlName="stepPrice">
+      </div>
+      <div *ngIf="formdata.controls.stepPrice.invalid && (formdata.controls.stepPrice.dirty || formdata.controls.stepPrice.touched)">
+
+        <div *ngIf="formdata.controls.stepPrice.errors.required" style="color:red">
+          Step price is required.
+        </div>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="fname">Last Price</label>
+      </div>
+      <div class="col-75">
+        <input type="Number" id="fname" name="lastPrice" formControlName="lastPrice" (blur)="checkPrice()">
+      </div>
+      <div *ngIf="formdata.controls.lastPrice.invalid && (formdata.controls.lastPrice.dirty || formdata.controls.lastPrice.touched)">
+
+        <div *ngIf="formdata.controls.lastPrice.errors.required" style="color:red">
+          Last price is required.
+        </div>
+      </div>
+      <div *ngIf="check==false" style="color:red">
+        Last price must be greater than first price.
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-25">
+          <label for="fname">Date End</label>
+        </div>
+        <div class="col-75">
+          <input type="datetime-local" id="fname" name="datetime" formControlName="datetime" >
+        </div>
+        <div *ngIf="formdata.controls.datetime.invalid && (formdata.controls.datetime.dirty || formdata.controls.datetime.touched)">
+  
+          <div *ngIf="formdata.controls.datetime.errors.required" style="color:red">
+            Date end is required.
+          </div>
+        </div>
+      </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="subject">Description</label>
+      </div>
+      <div class="col-75">
+        <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px" name="description"
+          formControlName="description"></textarea>
+        <div *ngIf="formdata.controls.description.invalid && (formdata.controls.description.dirty || formdata.controls.description.touched)">
+
+          <div *ngIf="formdata.controls.description.errors.required" style="color:red">
+            Description is required.
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <input name="image" [(ngModel)]="image" formControlName="image" type="file" accept="image/*" (change)="changeListener($event)" >
+    <div class="row">
+      <!-- <input [disabled]="!formdata.valid" (click)="onSubmit()" type="submit" value="Submit"> -->
+      <input  (click)="onSubmit()" type="submit" value="Submit">
+
+    </div>
+  </form>
+</div>
+<app-footer></app-footer>

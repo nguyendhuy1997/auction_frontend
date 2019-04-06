@@ -1,0 +1,27 @@
+<!-- <form (ngSubmit)="getLogin()">
+  <input type='text' [(ngModel)]="user.email" name="email" placeholder="Email" required=''>
+  <input type='text' [(ngModel)]="user.password" name="password" placeholder="password" required=''>
+  <button type='button' (click)='getLogin()'>button</button>
+</form> -->
+<app-header></app-header>
+<form (ngSubmit)="getLogin()">
+  <div class="container">
+    <h1>Login</h1>
+    <p>Please fill in this form to login.</p>
+    <hr>
+
+    <label for="email"><b>Email</b></label>
+    <input type="text" [(ngModel)]="user.email" placeholder="Enter Email" name="email" required=''>
+
+    <label for="psw"><b>Password</b></label>
+    <input type="password" [(ngModel)]="user.password" placeholder="Enter Password" name="psw" required=''>
+    <label *ngIf="message===false" style="color:red">This account is not available</label>
+
+    <button type="submit" (click)='getLogin()' class="registerbtn">Login</button>
+  </div>
+  
+  <div class="container signin">
+    <p>Still dont have a account ? <a href="#">Register</a>.</p>
+  </div>
+</form>
+<app-footer></app-footer>

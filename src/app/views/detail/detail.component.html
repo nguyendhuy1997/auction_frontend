@@ -1,0 +1,120 @@
+<app-header></app-header>
+<div *ngIf="product" class="container py-md-3 detail-product-wrapper">
+    <!-- top Products -->
+    <div class="row">
+        <!-- product right -->
+        <div class="left-ads-display col-lg-8">
+            <div class="row">
+                <div class="desc1-left col-md-6">
+                    <!-- <img src="/assets/images/{{product.image}}" class="img-fluid" alt=""> -->
+                    <img [src]="_DomSanitizationService.bypassSecurityTrustUrl(product.image)" height="500px" width="300px" alt="" />
+                </div>
+                <div  class="desc1-right col-md-6 pl-lg-4">
+                    <h2>{{product.name}}</h2>
+                    <app-countdown-timer [product]='product'></app-countdown-timer>
+                    <h5>Seller : {{seller}}</h5>
+                    <h5>Bidder : {{bidder}}</h5>
+                    <div *ngIf="product.status==1">
+                        <h5>Now: {{formatNumber(product.current_price)}} đ</h5>
+                        <h5>Step: {{formatNumber(product.step_price)}} đ</h5>
+                        <h5>{{formatNumber(product.last_price)}} đ <span><button data-toggle="modal" data-target="#buyNowModal" (click)="checkBuy()" id="buynow">BUYNOW</button></span></h5>
+                        <div class="available mt-3">
+                            <form action="#" [formGroup]="formData" method="post" class="w3layouts-newsletter">
+                                <input type="number" name="txtBid" formControlName="txtBid" placeholder="Enter price to bid"
+                                    required="">
+                                <!-- <div *ngIf="formData.controls.txtBid.invalid && formData.controls.txtBid.touched">
+                                    Name is required.
+                                </div> -->
+                                <button class="btn1" data-toggle="modal" data-target="#myModal" (click)="bid()">Bid</button>
+
+                            </form>
+                            <!-- <div><span style="color:red">{{msg}}</span></div> -->
+                            <span><a href="#">login to save in wishlist </a></span>
+                            <p>{{product.description}} </p>
+                        </div>
+
+                    </div>
+                    <div class="share-desc">
+                        <div class="share">
+                            <h4>Share Product :</h4>
+                            <ul class="w3layouts_social_list list-unstyled">
+                                <li>
+                                    <a href="#" class="w3pvt_facebook">
+                                        <span class="fa fa-facebook-f"></span>
+                                    </a>
+                                </li>
+                                <li class="mx-2">
+                                    <a href="#" class="w3pvt_twitter">
+                                        <span class="fa fa-twitter"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="w3pvt_dribble">
+                                        <span class="fa fa-dribbble"></span>
+                                    </a>
+                                </li>
+                                <li class="ml-2">
+                                    <a href="#" class="w3pvt_google">
+                                        <span class="fa fa-google-plus"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                    <p>{{msg}}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" *ngIf="buy==true" (click)='buyNow()'>Buynow</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" *ngIf="check==true" (click)='accept()'>Accept</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal fade" id="buyNowModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                    <p>{{msgBuy}}</p>
+                </div>
+                <div class="modal-footer">
+                    <button *ngIf="msgBuy=='Do you decide to buy it?'" type="button" class="btn btn-default" data-dismiss="modal" (click)='buyNow()'>Buynow</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<app-footer></app-footer>

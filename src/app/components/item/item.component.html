@@ -1,0 +1,25 @@
+<div class="col-md-4 product-men">
+  <div class="product-shoe-info shoe text-center">
+    <div class="men-thumb-item">
+      <img  [src]="_DomSanitizationService.bypassSecurityTrustUrl(product.image)" alt=""  width="250px" height="250px" class="img-fluid" alt="">
+    </div>
+    <div class="item-info-product">
+      <h4>
+        <a  href="detail/{{product.id_product}}"  >{{product.name}} </a>
+        <!-- <a   routerLinkActive="detail/{{product.id_product}}">{{product.name}} </a> -->
+      </h4>
+
+      <div class="product_price">
+        <div class="grid-price">
+          <div>Current Price:</div>
+          <div class="first_price">{{formatNumber(product.first_price)}} đ</div>
+        </div>
+        <div class="grid-price">
+          <div>Buy Now:</div>
+          <div class="last_price">{{formatNumber(product.last_price)}} đ</div>
+        </div>
+      </div>
+    </div>
+    <app-countdown-timer [product]='product'></app-countdown-timer>
+  </div>
+</div>
