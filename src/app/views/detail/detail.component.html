@@ -9,28 +9,46 @@
                     <!-- <img src="/assets/images/{{product.image}}" class="img-fluid" alt=""> -->
                     <img src="http://localhost:8000/storage/{{product.image}}" height="500px" width="300px" alt="" />
                 </div>
-                <div  class="desc1-right col-md-6 pl-lg-4">
-                    <h2>{{product.name}}</h2>
+                <div class="desc1-right col-md-6 pl-lg-4">
+                    <div style="display: flex; justify-content: space-between; align-items: center">
+                        <h2>{{product.name}}</h2>
+                        <div (click)="wishList()" class="fa fa-star wishlist_icon {{checklist==1 ? 'checked' : ''}}"></div>
+                    </div>
                     <app-countdown-timer [product]='product'></app-countdown-timer>
-                    <h5>Seller : {{seller}}</h5>
-                    <h5>Bidder : {{bidder}}</h5>
+                    <div class="detail-info">
+                        <p style="font-size:15px; color:black">Seller :</p>
+                        <p style="font-size:15px; ">{{seller}}</p>
+                    </div>
+                    <div class="detail-info">
+                        <p style="font-size:15px; color:black">Bidder :</p>
+                        <p style="font-size:15px">{{bidder}}</p>
+                    </div>
                     <div *ngIf="product.status==1">
-                        <h5>Now: {{formatNumber(product.current_price)}} đ</h5>
-                        <h5>Step: {{formatNumber(product.step_price)}} đ</h5>
-                        <h5>{{formatNumber(product.last_price)}} đ <span><button data-toggle="modal" data-target="#buyNowModal" (click)="checkBuy()" id="buynow">BUYNOW</button></span></h5>
+                        <div class="detail-info">
+                            <p style="font-size:15px; color:black">Now :</p>
+                            <p style="font-size:15px; color:purple">{{formatNumber(product.current_price)}} đ</p>
+                        </div>
+                        <div class="detail-info">
+                            <p style="font-size:15px; color:black">Step :</p>
+                            <p style="font-size:15px; ">{{formatNumber(product.step_price)}} đ</p>
+                        </div>
+                        <div class="detail-info">
+                            <p style="font-size:15px; color:red">{{formatNumber(product.last_price)}} đ</p>
+                            <button data-toggle="modal" data-target="#buyNowModal" (click)="checkBuy()" id="buynow">BUYNOW</button>
+                        </div>
                         <div class="available mt-3">
-                            <form action="#" [formGroup]="formData" method="post" class="w3layouts-newsletter">
-                                <input type="number" name="txtBid" formControlName="txtBid" placeholder="Enter price to bid"
-                                    required="">
-                                <!-- <div *ngIf="formData.controls.txtBid.invalid && formData.controls.txtBid.touched">
-                                    Name is required.
-                                </div> -->
-                                <button class="btn1" data-toggle="modal" data-target="#myModal" (click)="bid()">Bid</button>
-
-                            </form>
+                            <div class="bid-footer">
+                                <div>
+                                    <input type="number" style="height: 100%" name="txtBid" [(ngModel)]="currentPrice"  placeholder="Enter price to bid"
+                                        required="">
+                                </div>
+                                <div>
+                                    <button data-toggle="modal" data-target="#myModal" (click)="bid()" id="buynow">BID</button>
+                                </div>
+                            </div>
                             <!-- <div><span style="color:red">{{msg}}</span></div> -->
-                            <span><a href="#">login to save in wishlist </a></span>
-                            <p>{{product.description}} </p>
+
+                            <p style="font-size:15px; color:black">{{product.description}}</p>
                         </div>
 
                     </div>
@@ -108,7 +126,8 @@
                     <p>{{msgBuy}}</p>
                 </div>
                 <div class="modal-footer">
-                    <button *ngIf="msgBuy=='Do you decide to buy it?'" type="button" class="btn btn-default" data-dismiss="modal" (click)='buyNow()'>Buynow</button>
+                    <button *ngIf="msgBuy=='Do you decide to buy it?'" type="button" class="btn btn-default"
+                        data-dismiss="modal" (click)='buyNow()'>Buynow</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>

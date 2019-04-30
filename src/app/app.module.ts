@@ -17,7 +17,12 @@ import { RegisterComponent } from './views/register/register.component';
 import { CategoryComponent } from './views/category/category.component';
 import { HistoryComponent } from './views/history/history.component';
 import { PostComponent } from './views/post/post.component';
-
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LastBidComponent } from './components/last-bid/last-bid.component';
+import { WishlistComponent } from './views/wishlist/wishlist.component'; 
 
 
 @NgModule({
@@ -34,6 +39,8 @@ import { PostComponent } from './views/post/post.component';
     CategoryComponent,
     HistoryComponent,
     PostComponent,
+    LastBidComponent,
+    WishlistComponent,
 
   ],
   imports: [
@@ -42,7 +49,11 @@ import { PostComponent } from './views/post/post.component';
     HttpClientModule,
     HttpClientInMemoryWebApiModule,
     FormsModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule,
+    MatAutocompleteModule,
+    MatFormFieldModule,
+    MatInputModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

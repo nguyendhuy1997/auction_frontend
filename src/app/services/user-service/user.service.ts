@@ -62,4 +62,12 @@ export class UserService {
   getEmail(id:number): Observable<any> {
     return this.http.get<any>(`http://127.0.0.1:8000/getemail/${id}`);
   };
+  wishStatus(user:any):Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      })
+    };
+    return this.http.post<any>('http://127.0.0.1:8000/wishstatus',user,httpOptions);
+  }
 }

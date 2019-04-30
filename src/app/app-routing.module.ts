@@ -7,6 +7,7 @@ import {RegisterComponent} from './views/register/register.component';
 import { CategoryComponent } from './views/category/category.component';
 import {HistoryComponent} from './views/history/history.component';
 import {PostComponent} from './views/post/post.component';
+import {WishlistComponent} from './views/wishlist/wishlist.component';
 
 
 
@@ -18,7 +19,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent},
   { path: 'history', component: HistoryComponent},
   { path: 'post', component: PostComponent},
-
+  { path: 'wishlist', component: WishlistComponent},
   
 
 

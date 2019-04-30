@@ -15,10 +15,10 @@ export class RegisterComponent implements OnInit {
     username:'',
     password:'',
   };
+  checkRepass:boolean;
   pass:string;
   rePass:string;
   msg:string;
-  msg1:string;
   result:boolean;
   formdata: FormGroup;
   ngOnInit() {
@@ -30,7 +30,9 @@ export class RegisterComponent implements OnInit {
       ),
       email: new FormControl('', Validators.compose([
         Validators.required,
-        Validators.pattern('^[a-z][a-z0-9_\.]{5,32}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$')]),
+        Validators.email,
+        ]),
+      
         
       ),
       password: new FormControl('', Validators.compose([
@@ -49,19 +51,26 @@ export class RegisterComponent implements OnInit {
       console.log(temp);
       this.router.navigate(['login']);
     });
+    console.log(this.user);
   }
   checkPass(){
-    if(this.rePass==this.pass)
+    if(this.rePass===this.pass)
     {
       return true;
     }
     else {
+      this.formdata.controls['rePassword'].setErrors({ 'incorrect': true });
       return false;
     }
+
   }
   checkEmail(){
     this.UserService.checkEmail(this.user).subscribe(data =>{
       this.msg=data;
+      if(this.msg=='false')
+      {
+        this.formdata.controls['email'].setErrors({ 'incorrect': true });
+      }
     });
   }
 }

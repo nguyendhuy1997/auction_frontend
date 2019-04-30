@@ -47,34 +47,9 @@
   <!--/ab -->
   <section  class="about py-5">
     <div  class="container pb-lg-3">
-      <h3 class="tittle text-center">History Bid</h3>
+      <h3 class="tittle text-center">Wishlist</h3>
       <div class="row">
-        <!-- <app-item *ngFor="let product of products" [product]="product"></app-item> -->
-        <div *ngFor="let product of products" class="col-md-4 product-men">
-            <div class="product-shoe-info shoe text-center">
-              <div class="men-thumb-item">
-                <img  src="http://localhost:8000/storage/{{product.image}}" alt=""  width="250px" height="250px" class="img-fluid" alt="">
-              </div>
-              <div class="item-info-product">
-                <h4>
-                  <a  href="detail/{{product.id_product}}"  >{{product.name}} </a>
-                </h4>
-          
-                <div class="product_price">
-                  <div class="grid-price">
-                    <div>Current Price:</div>
-                    <div class="first_price">{{formatNumber(product.first_price)}} đ</div>
-                  </div>
-                  <div class="grid-price">
-                    <div>Buy Now:</div>
-                    <div class="last_price">{{formatNumber(product.last_price)}} đ</div>
-                  </div>
-                </div>
-              </div>
-              <app-countdown-timer [product]='product'></app-countdown-timer>
-              <app-last-bid [id_product]='product.id_product'></app-last-bid>
-            </div>
-          </div>
+        <app-item *ngFor="let product of products" [product]="product"></app-item>
       </div>
     </div>
   </section>
@@ -84,24 +59,9 @@
     <div class="container py-lg-0">
       <div class="row text-center brand-items">
         <div class="col-sm-2 col-3">
-          <a href="#"><span class="fa fa-connectdevelop" aria-hidden="true"></span></a>
-        </div>
-        <div class="col-sm-2 col-3">
-          <a href="#"><span class="fa fa-empire" aria-hidden="true"></span></a>
-        </div>
-        <div class="col-sm-2 col-3">
-          <a href="#"><span class="fa fa-ioxhost" aria-hidden="true"></span></a>
-        </div>
-        <div class="col-sm-2 col-3">
-          <a href="#"><span class="fa fa-first-order" aria-hidden="true"></span></a>
-        </div>
-        <div class="col-sm-2 col-3 mt-sm-0 mt-4">
-          <a href="#"><span class="fa fa-joomla" aria-hidden="true"></span></a>
-        </div>
-        <div class="col-sm-2 col-3 mt-sm-0 mt-4">
-          <a href="#"><span class="fa fa-dropbox" aria-hidden="true"></span></a>
+          <a href="#"></a>
         </div>
       </div>
     </div>
   </section>
-  <app-footer></app-footer>
+<app-footer></app-footer>

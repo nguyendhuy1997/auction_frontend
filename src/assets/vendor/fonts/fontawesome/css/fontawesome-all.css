@@ -485,7 +485,7 @@ readers do not read off random characters that represent icons */
   content: "\f294"; }
 
 .fa-bold:before {
-  content: "\f032"; }
+  content: "\f031"; }
 
 .fa-bolt:before {
   content: "\f0e7"; }

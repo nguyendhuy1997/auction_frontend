@@ -1,8 +1,5 @@
 <app-header></app-header>
 <h2>Post Form</h2>
-<p>Resize the browser window to see the effect. When the screen is less than 600px wide, make the two columns stack on
-  top of each other instead of next to each other.</p>
-<div *ngFor="let cate of category">{{cate.name}}</div>
 <div class="container">
   <form [formGroup]='formdata'>
     <div class="row">
@@ -109,8 +106,8 @@
 
     <input name="image" [(ngModel)]="image" formControlName="image" type="file" accept="image/*" (change)="changeListener($event)" >
     <div class="row">
-      <!-- <input [disabled]="!formdata.valid" (click)="onSubmit()" type="submit" value="Submit"> -->
-      <input  (click)="onSubmit()" type="submit" value="Submit">
+      <input [disabled]="!formdata.valid" (click)="onSubmit()" type="submit" value="Submit">
+      
 
     </div>
   </form>

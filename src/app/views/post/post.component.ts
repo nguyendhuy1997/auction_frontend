@@ -94,9 +94,9 @@ export class PostComponent implements OnInit {
           idSeller: localStorage.getItem('user_id')
         }
         this.UserService.postProduct(form).subscribe(data => {
-          console.log(data);
+           alert(data.message);
         })
-    
+       
     }
     changeListener($event): void {
         this.readThis($event.target);

@@ -15,13 +15,17 @@ export class HistoryComponent implements OnInit {
   };
   products: Products[];
   ngOnInit() {
-    console.log(this.user);
     this.getHistory();
   }
   getHistory():void{
     this.UserService.history(this.user).subscribe(data=>{
       this.products=data;
+      console.log(this.products);
     })
-   
+  }
+  
+  formatNumber(price: Number): String {
+    var regex = /\B(?=(\d{3})+(?!\d))/g;
+    return price.toString().replace(regex, ".");
   }
 }

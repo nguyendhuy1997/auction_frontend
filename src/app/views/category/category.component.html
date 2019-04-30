@@ -44,39 +44,19 @@
   </div>
 </section>
 <!-- //ab -->
+
 <!--/ab -->
 <section  class="about py-5">
   <div  class="container pb-lg-3">
-    <h3 class="tittle text-center">New Arrivals</h3>
+    <h3 class="tittle text-center">{{tittle}}</h3>
     <div class="row">
       <app-item *ngFor="let product of products" [product]="product"></app-item>
     </div>
   </div>
+  <button  class="button" (click)="loadMore()"  >Load More</button>
 </section>
+<br>
 <!-- //ab -->
 <!--/testimonials-->
-<section class="brands py-5" id="brands">
-  <div class="container py-lg-0">
-    <div class="row text-center brand-items">
-      <div class="col-sm-2 col-3">
-        <a href="#"><span class="fa fa-connectdevelop" aria-hidden="true"></span></a>
-      </div>
-      <div class="col-sm-2 col-3">
-        <a href="#"><span class="fa fa-empire" aria-hidden="true"></span></a>
-      </div>
-      <div class="col-sm-2 col-3">
-        <a href="#"><span class="fa fa-ioxhost" aria-hidden="true"></span></a>
-      </div>
-      <div class="col-sm-2 col-3">
-        <a href="#"><span class="fa fa-first-order" aria-hidden="true"></span></a>
-      </div>
-      <div class="col-sm-2 col-3 mt-sm-0 mt-4">
-        <a href="#"><span class="fa fa-joomla" aria-hidden="true"></span></a>
-      </div>
-      <div class="col-sm-2 col-3 mt-sm-0 mt-4">
-        <a href="#"><span class="fa fa-dropbox" aria-hidden="true"></span></a>
-      </div>
-    </div>
-  </div>
-</section>
+
 <app-footer></app-footer>

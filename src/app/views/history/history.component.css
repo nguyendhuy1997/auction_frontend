@@ -1,0 +1,28 @@
+.product-men {
+    margin-bottom: 1em;
+}
+.product-men .product_price .grid-price{
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.5em;
+}
+.product-men .product_price .grid-price .first_price{
+    color: purple;
+}
+.product-men .product_price .grid-price .last_price{
+    color: red;
+}
+@media(max-width:767px) {
+    .product-men {
+        margin-bottom: 1em;
+        float: left;
+        width: 50%;
+    }
+}
+@media(max-width:440px) {
+    .product-men {
+        margin-bottom: 1em;
+        float: left;
+        width: 100%;
+    }
+}

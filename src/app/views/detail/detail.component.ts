@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Testability } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ProductService } from '../../services/product-service/product.service';
 import { UserService } from '../../services/user-service/user.service';
@@ -34,17 +34,22 @@ export class DetailComponent implements OnInit {
   bidder: string;
   seller: string;
   id_bidder: any = localStorage.getItem('user_id');
+  checklist: number;
+  currentPrice:any;
 
 
   ngOnInit() {
+
     const id = this.route.snapshot.paramMap.get('id');
     this.getDetail(id);
+    this.statusWishlist();
+
     var pusher = new Pusher('eeb0818f31b45a74e6ae', {
       cluster: 'ap1',
       encrypted: true
     });
-    var channel = pusher.subscribe('channel-bid-' + id,function(data){
-      channel.members.each(function(member) {
+    var channel = pusher.subscribe('channel-bid-' + id, function (data) {
+      channel.members.each(function (member) {
         console.log(member);
       });
     });
@@ -55,7 +60,7 @@ export class DetailComponent implements OnInit {
         this.bidder = data[0].email;
       })
     });
-    
+
     var channel1 = pusher.subscribe('channel-buynow-' + id);
     channel1.bind('App\\Events\\BuyNowEvent', (data) => {
       this.product.status = data.status;
@@ -72,6 +77,10 @@ export class DetailComponent implements OnInit {
     this.ProductService.getDetail(id).subscribe(data => {
       this.product = data;
       console.log(this.product);
+
+      //status wishlist
+
+      //status wishlist
       this.UserService.getEmail(this.product.id_seller).subscribe(data => {
         this.seller = data[0].email;
       })
@@ -90,13 +99,15 @@ export class DetailComponent implements OnInit {
   bid(): void {
     const email = localStorage.getItem('email');
     const money = localStorage.getItem('money');
-    const curPrice = this.formData.controls.txtBid.value;
+    const curPrice = this.currentPrice;
+    console.log(curPrice);
+    console.log(this.currentPrice);
 
     if (email != null) {
       const id = this.route.snapshot.paramMap.get('id');
       this.ProductService.getDetail(id).subscribe(data => {
         this.product = data;
-        if (curPrice < this.product.current_price + this.product.step_price) {
+        if (curPrice < this.product.current_price + this.product.step_price || curPrice==null) {
           this.msg = "This price not be allow";
           this.buy = false;
           this.check = false;
@@ -176,7 +187,7 @@ export class DetailComponent implements OnInit {
   accept() {
     if (this.id_bidder != this.product.id_seller) {
       const id = this.route.snapshot.paramMap.get('id');
-      const curPrice = this.formData.controls.txtBid.value;
+      const curPrice = this.currentPrice;
       const user: any = {
         id_bidder: localStorage.getItem('user_id'),
         id_seller: this.product.id_seller,
@@ -188,4 +199,36 @@ export class DetailComponent implements OnInit {
     else alert('Seller cant bid the product')
   }
 
+  wishList() {
+    const user = {
+      id_user: localStorage.getItem('user_id'),
+      id_product: this.product.id_product,
+      status: this.checklist,
+    }
+    if(localStorage.getItem('user_id')!=null)
+    {
+      if(this.checklist==1)
+      {
+        this.checklist=0;
+      }
+      else this.checklist=1; 
+      this.ProductService.wishlist(user).subscribe(data => {
+      })
+    }
+    else{
+      alert('Login first to add to wishlist');
+    }
+    
+   
+  }
+  statusWishlist() {
+    const user = {
+      id_product: this.route.snapshot.paramMap.get('id'),
+      id_user: localStorage.getItem('user_id'),
+    }
+    this.UserService.wishStatus(user).subscribe(data => {
+      this.checklist = data.status;
+      console.log(this.checklist);
+    })
+  }
 }

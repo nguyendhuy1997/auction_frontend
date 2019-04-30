@@ -9,10 +9,10 @@
     <input type="text" placeholder="Enter Username" name="username" formControlName="username">
     <div *ngIf="formdata.controls.username.invalid && (formdata.controls.username.dirty || formdata.controls.username.touched)">
 
-      <div *ngIf="formdata.controls.username.errors.required">
+      <div style="color:red" *ngIf="formdata.controls.username.errors.required">
         Name is required.
       </div>
-      <div *ngIf="formdata.controls.username.errors.minlength">
+      <div style="color:red" *ngIf="formdata.controls.username.errors.minlength">
         Name must be at least 5 characters long.
       </div>
     </div>
@@ -20,24 +20,24 @@
     <input type="email" placeholder="Enter email" name="email" formControlName="email" [(ngModel)]="user.email" (blur)="checkEmail()" >
     <div *ngIf="formdata.controls.email.invalid && (formdata.controls.email.dirty || formdata.controls.email.touched)">
 
-      <div *ngIf="formdata.controls.email.errors.required">
+      <div style="color:red" *ngIf="formdata.controls.email.errors.required">
         Email is required.
       </div>
-      <div *ngIf="formdata.controls.email.errors.pattern">
+      <div style="color:red" *ngIf="formdata.controls.email.errors.email">
         Email is wrong type.
       </div>
     </div>
-    <div *ngIf="msg==false">Email has been used</div>
+    <div style="color:red" *ngIf="msg==false">Email has been used</div>
 
     <label for="password"><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="password" formControlName="password" [(ngModel)]='pass' >
     <div *ngIf="formdata.controls.password.invalid && (formdata.controls.password.dirty || formdata.controls.password.touched)">
 
-      <div *ngIf="formdata.controls.password.errors.required">
+      <div style="color:red" *ngIf="formdata.controls.password.errors.required">
         Password is required.
       </div>
       
-      <div *ngIf="formdata.controls.password.errors.minlength">
+      <div style="color:red" *ngIf="formdata.controls.password.errors.minlength">
         Password must be at least 8 characters long.
       </div>
     </div>
@@ -46,12 +46,12 @@
     <input type="password" placeholder="Enter Password" name="rePassword" formControlName="rePassword" [(ngModel)]='rePass' (keyup)="checkPass()" >
     <div *ngIf="formdata.controls.rePassword.invalid && (formdata.controls.rePassword.dirty || formdata.controls.rePassword.touched)">
 
-      <div *ngIf="formdata.controls.rePassword.errors.required">
+      <div style="color:red" *ngIf="formdata.controls.rePassword.errors.required">
         Repassword is required.
       </div>
      
     </div>
-    <div *ngIf="checkPass()==false">
+    <div style="color:red" *ngIf="checkPass()==false">
       Password is not match
   </div>
     <hr>

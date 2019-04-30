@@ -5,13 +5,13 @@
       <!-- nav -->
       <nav class="py-4">
         <div id="logo">
-          <h1> <a href="index.html"><span class="fa fa-bold" aria-hidden="true"></span>ootie</a></h1>
+          <h1> <a href="">Auction</a></h1>
         </div>
 
         <label for="drop" class="toggle">Menu</label>
         <input type="checkbox" id="drop" />
         <ul class="menu mt-2">
-          <li class="active"><a href="index.html">Home</a></li>
+          <li class="active"><a href="">Home</a></li>
           <li><a href="login">Login</a></li>
           <li><a href="register">Register</a></li>
           <li>
@@ -20,11 +20,39 @@
             </label>
             <a href="#">Category <span class="fa fa-angle-down" aria-hidden="true"></span></a>
             <input type="checkbox" id="drop-2" />
-            <ul >
-              <li *ngFor="let cate of category"><a href="category/{{cate.id_category}}"  >{{cate.name}}</a></li>
+            <ul>
+              <li *ngFor="let cate of category"><a href="category/{{cate.id_category}}">{{cate.name}}</a></li>
             </ul>
           </li>
-          <li><a href="contact.html">Account</a></li>
+          <li *ngIf="userId!=null">
+            <a href="#">Account <span class="fa fa-angle-down" aria-hidden="true"></span></a>
+            <input type="checkbox" id="drop-1" />
+            <ul>
+              <li><a href="history">History Bid</a></li>
+              <li><a href="wishlist">Wishlist</a></li>
+              <li><a href="post">Post Product</a></li>
+              <li><a (click)="logOut()">Logout</a></li>
+            
+            </ul>
+          </li>
+          <li>
+            <div class="search-bar">
+              <form class="example" style="margin:auto;max-width:300px">
+                <input type="text" matInput placeholder="" aria-label="State" [matAutocomplete]="auto" [formControl]="stateCtrl"
+                  [(ngModel)]="searchKey" (keyup)="autoComplete()" />
+                <mat-autocomplete #auto="matAutocomplete">
+                  <mat-option *ngFor="let state of test">
+                    <a href="/detail/{{state.id_product}}"><img class="example-option-img" aria-hidden src="http://127.0.0.1:8000/storage/{{state.image}}"
+                      height="25">
+                    <span>{{state.name}}</span></a>
+                    
+                    
+                  </mat-option>
+                </mat-autocomplete>
+                <button type="submit"><i class="fa fa-search"></i></button>
+              </form>
+            </div>
+          </li>
         </ul>
       </nav>
       <!-- //nav -->
@@ -33,13 +61,11 @@
   <!-- //header -->
   <!--/banner-->
   <div class="banner-info">
-    <p>Trending of the week</p>
-    <h3 class="mb-4">Casual Shoes for Men</h3>
+    <h3 class="mb-4">Bid with Confidence</h3>
     <div class="ban-buttons">
-      <a href="shop-single.html" class="btn">Shop Now</a>
-      <a href="single.html" class="btn active">Read More</a>
+      <a href="shop-single.html" class="btn">About Us</a>
+      <a href="single.html" class="btn active">Contact</a>
     </div>
   </div>
-  <!--// banner-inner -->
 
 </div>

@@ -11,11 +11,15 @@ export class HomePageComponent implements OnInit {
 
   constructor(private ProductService: ProductService) { }
   products: Products[];
+  productsTimeOut: Products[];
+  productsHighest: Products[];
   ngOnInit() {
     this.getProducts();
   }
   getProducts(): void {
     this.ProductService.getProducts().subscribe(data => this.products = data);
+    this.ProductService.getProductsTimeOut().subscribe(data=>this.productsTimeOut=data);
+    this.ProductService.getProductsHighest().subscribe(data=>this.productsHighest=data);
   }
   
 }

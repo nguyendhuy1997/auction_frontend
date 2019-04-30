@@ -16,3 +16,29 @@
     border-radius: 0;
     padding: 0.7em 2em;
 }
+
+.wishlist_wrapper{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.wishlist_icon{
+    font-size: 30px;
+}
+
+.checked{
+    color: yellow; 
+}
+
+.detail-info{
+    display: flex;
+    justify-content: space-between;
+}
+
+.bid-footer{
+    display: flex;
+    margin-top: 30px;
+    align-content: center;
+    justify-content: space-between;
+}
