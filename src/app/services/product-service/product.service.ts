@@ -36,6 +36,14 @@ export class ProductService {
   getProductCategory(id:string): Observable<Product[]> {
     return this.http.get<Product[]>(`http://127.0.0.1:8000/productcategory/${id}`);
   };
+  getRelativeProduct(product):Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      })
+    };
+    return this.http.post<any>('http://127.0.0.1:8000/relativeproduct',product,httpOptions);
+  }
   loadMore(product):Observable<any>{
     const httpOptions = {
       headers: new HttpHeaders({ 'Accept': 'application/json',

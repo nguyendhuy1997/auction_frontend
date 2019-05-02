@@ -36,6 +36,7 @@ export class DetailComponent implements OnInit {
   id_bidder: any = localStorage.getItem('user_id');
   checklist: number;
   currentPrice:any;
+  relativeProduct:Products;
 
 
   ngOnInit() {
@@ -76,7 +77,14 @@ export class DetailComponent implements OnInit {
 
     this.ProductService.getDetail(id).subscribe(data => {
       this.product = data;
-      console.log(this.product);
+      const tempProduct={
+        id_category:this.product.category,
+        id_product:this.product.id_product
+      }
+      this.ProductService.getRelativeProduct(tempProduct).subscribe(data=>{
+        this.relativeProduct=data;
+        console.log(this.relativeProduct);
+      })
 
       //status wishlist
 
@@ -200,20 +208,22 @@ export class DetailComponent implements OnInit {
   }
 
   wishList() {
-    const user = {
-      id_user: localStorage.getItem('user_id'),
-      id_product: this.product.id_product,
-      status: this.checklist,
-    }
+
     if(localStorage.getItem('user_id')!=null)
     {
       if(this.checklist==1)
       {
         this.checklist=0;
       }
-      else this.checklist=1; 
+      else this.checklist=1;
+      const user = {
+        id_user: localStorage.getItem('user_id'),
+        id_product: this.product.id_product,
+        status: this.checklist,
+      } 
       this.ProductService.wishlist(user).subscribe(data => {
       })
+      
     }
     else{
       alert('Login first to add to wishlist');
