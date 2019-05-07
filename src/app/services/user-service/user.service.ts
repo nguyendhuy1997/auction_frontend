@@ -24,7 +24,7 @@ export class UserService {
       'Content-Type': 'application/json',
       })
     };
-    return this.http.post<any>('https://auctionbackend.herokuapp.com/login',user,httpOptions);
+    return this.http.post<any>('http://127.0.0.1:8000/login',user,httpOptions);
   }
   register(user:any):Observable<any>{
     const httpOptions = {
@@ -32,7 +32,7 @@ export class UserService {
       'Content-Type': 'application/json',
       })
     };
-    return this.http.post<any>('https://auctionbackend.herokuapp.com/register',user,httpOptions);
+    return this.http.post<any>('http://127.0.0.1:8000/register',user,httpOptions);
   }
 
   checkEmail(email:any):Observable<any>{
@@ -41,7 +41,7 @@ export class UserService {
       'Content-Type': 'application/json',
       })
     };
-    return this.http.post<any>('https://auctionbackend.herokuapp.com/checkemail',email,httpOptions);
+    return this.http.post<any>('http://127.0.0.1:8000/checkemail',email,httpOptions);
   }
   history(user:any):Observable<any>{
     const httpOptions = {
@@ -49,7 +49,7 @@ export class UserService {
       'Content-Type': 'application/json',
       })
     };
-    return this.http.post<any>('https://auctionbackend.herokuapp.com/history',user,httpOptions);
+    return this.http.post<any>('http://127.0.0.1:8000/history',user,httpOptions);
   }
   postProduct(user:any):Observable<any>{
     const httpOptions = {
@@ -57,10 +57,10 @@ export class UserService {
       'Content-Type': 'application/json',
       })
     };
-    return this.http.post<any>('https://auctionbackend.herokuapp.com/postproduct',user,httpOptions);
+    return this.http.post<any>('http://127.0.0.1:8000/postproduct',user,httpOptions);
   }
   getEmail(id:number): Observable<any> {
-    return this.http.get<any>(`https://auctionbackend.herokuapp.com/getemail/${id}`);
+    return this.http.get<any>(`http://127.0.0.1:8000/getemail/${id}`);
   };
   wishStatus(user:any):Observable<any>{
     const httpOptions = {
@@ -68,6 +68,6 @@ export class UserService {
       'Content-Type': 'application/json',
       })
     };
-    return this.http.post<any>('https://auctionbackend.herokuapp.com/wishstatus',user,httpOptions);
+    return this.http.post<any>('http://127.0.0.1:8000/wishstatus',user,httpOptions);
   }
 }

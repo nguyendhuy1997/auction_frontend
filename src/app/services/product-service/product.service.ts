@@ -19,22 +19,22 @@ export class ProductService {
 
   }
   getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>('https://auctionbackend.herokuapp.com/product');
+    return this.http.get<Product[]>('http://127.0.0.1:8000/product');
   };
   getProductsTimeOut(): Observable<Product[]> {
-    return this.http.get<Product[]>('https://auctionbackend.herokuapp.com/producttimeout');
+    return this.http.get<Product[]>('http://127.0.0.1:8000/producttimeout');
   };
   getProductsHighest(): Observable<Product[]> {
-    return this.http.get<Product[]>('https://auctionbackend.herokuapp.com/producthighest');
+    return this.http.get<Product[]>('http://127.0.0.1:8000/producthighest');
   };
   getDetail(id:string): Observable<Product> {
-    return this.http.get<Product>(`https://auctionbackend.herokuapp.com/product/${id}`);
+    return this.http.get<Product>(`http://127.0.0.1:8000/product/${id}`);
   };
   getCategory(): Observable<Category[]> {
-    return this.http.get<Category[]>('https://auctionbackend.herokuapp.com/category');
+    return this.http.get<Category[]>('http://127.0.0.1:8000/category');
   };
   getProductCategory(id:string): Observable<Product[]> {
-    return this.http.get<Product[]>(`https://auctionbackend.herokuapp.com/productcategory/${id}`);
+    return this.http.get<Product[]>(`http://127.0.0.1:8000/productcategory/${id}`);
   };
   getRelativeProduct(product):Observable<any>{
     const httpOptions = {
@@ -42,7 +42,7 @@ export class ProductService {
       'Content-Type': 'application/json',
       })
     };
-    return this.http.post<any>('https://auctionbackend.herokuapp.com/relativeproduct',product,httpOptions);
+    return this.http.post<any>('http://127.0.0.1:8000/relativeproduct',product,httpOptions);
   }
   loadMore(product):Observable<any>{
     const httpOptions = {
@@ -50,7 +50,7 @@ export class ProductService {
       'Content-Type': 'application/json',
       })
     };
-    return this.http.post<any>('https://auctionbackend.herokuapp.com/loadmore',product,httpOptions);
+    return this.http.post<any>('http://127.0.0.1:8000/loadmore',product,httpOptions);
   }
   autoComplete(searchKey):Observable<any>{
     const httpOptions = {
@@ -58,7 +58,7 @@ export class ProductService {
       'Content-Type': 'application/json',
       })
     };
-    return this.http.post<any>('https://auctionbackend.herokuapp.com/autocomplete',searchKey,httpOptions);
+    return this.http.post<any>('http://127.0.0.1:8000/autocomplete',searchKey,httpOptions);
   }
   lastBid(user):Observable<any>{
     const httpOptions = {
@@ -66,7 +66,7 @@ export class ProductService {
       'Content-Type': 'application/json',
       })
     };
-    return this.http.post<any>('https://auctionbackend.herokuapp.com/lastbid',user,httpOptions);
+    return this.http.post<any>('http://127.0.0.1:8000/lastbid',user,httpOptions);
   }
   wishlist(user):Observable<any>{
     const httpOptions = {
@@ -74,7 +74,7 @@ export class ProductService {
       'Content-Type': 'application/json',
       })
     };
-    return this.http.post<any>('https://auctionbackend.herokuapp.com/wishlist',user,httpOptions);
+    return this.http.post<any>('http://127.0.0.1:8000/wishlist',user,httpOptions);
   }
   getWishlist(user):Observable<any>{
     const httpOptions = {
@@ -82,7 +82,7 @@ export class ProductService {
       'Content-Type': 'application/json',
       })
     };
-    return this.http.post<any>('https://auctionbackend.herokuapp.com/getwishlist',user,httpOptions);
+    return this.http.post<any>('http://127.0.0.1:8000/getwishlist',user,httpOptions);
   }
 
 }

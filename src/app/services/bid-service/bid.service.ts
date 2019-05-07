@@ -13,7 +13,7 @@ export class BidService {
       'Content-Type': 'application/json',
       })
     };
-    return this.http.post<any>('https://auctionbackend.herokuapp.com/bid',user,httpOptions);
+    return this.http.post<any>('http://127.0.0.1:8000/bid',user,httpOptions);
   }
   buyNow(user):Observable<any>{
     const httpOptions = {
@@ -21,7 +21,7 @@ export class BidService {
       'Content-Type': 'application/json',
       })
     };
-    return this.http.post<any>('https://auctionbackend.herokuapp.com/buynow',user,httpOptions);
+    return this.http.post<any>('http://127.0.0.1:8000/buynow',user,httpOptions);
   }
   countDown(user):Observable<any>{
     const httpOptions = {
@@ -29,7 +29,7 @@ export class BidService {
       'Content-Type': 'application/json',
       })
     };
-    return this.http.post<any>('https://auctionbackend.herokuapp.com/countdown',user,httpOptions);
+    return this.http.post<any>('http://127.0.0.1:8000/countdown',user,httpOptions);
   }
   test(){
     console.log('work');
