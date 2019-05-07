@@ -42,7 +42,7 @@
                   [(ngModel)]="searchKey" (keyup)="autoComplete()" />
                 <mat-autocomplete #auto="matAutocomplete">
                   <mat-option *ngFor="let state of test">
-                    <a href="/detail/{{state.id_product}}"><img class="example-option-img" aria-hidden src="http://127.0.0.1:8000/storage/{{state.image}}"
+                    <a href="/detail/{{state.id_product}}"><img class="example-option-img" aria-hidden src="https://auctionbackend.herokuapp.com/storage/{{state.image}}"
                       height="25">
                     <span>{{state.name}}</span></a>
                     
