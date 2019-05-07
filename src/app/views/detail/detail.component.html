@@ -39,8 +39,8 @@
                         <div class="available mt-3">
                             <div class="bid-footer">
                                 <div>
-                                    <input type="number" style="height: 100%" name="txtBid" [(ngModel)]="currentPrice"  placeholder="Enter price to bid"
-                                        required="">
+                                    <input type="number" style="height: 100%" name="txtBid" [(ngModel)]="currentPrice"
+                                        placeholder="Enter price to bid" required="">
                                 </div>
                                 <div>
                                     <button data-toggle="modal" data-target="#myModal" (click)="bid()" id="buynow">BID</button>
@@ -81,6 +81,32 @@
                         <div class="clearfix"></div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="right-ads-display col-lg-4">
+            <div class="row">
+                <div class="same-seller-wrapper">
+                    <h2><b>Relative Product</b></h2>
+
+                    <div *ngFor="let product of relativeProduct" class="same-seller-item">
+
+                        <div class="item-img">
+                            <a href="detail/{{product.id_product}}"> <img src="http://localhost:8000/storage/{{product.image}}"
+                                    alt=""></a>
+                        </div>
+                        <div class="item-info">
+                            <p style="color:black">{{product.name}}</p>
+                            <p style="color:black">Current Price: <span style="color:purple">{{formatNumber(product.current_price)}}
+                                    đ</span> </p>
+                            <p style="color:black">Buy Now: <span style="color:red">{{formatNumber(product.last_price)}}
+                                    đ</span></p>
+                        </div>
+
+                    </div>
+
+
+                </div>
+               
             </div>
         </div>
     </div>

@@ -42,3 +42,21 @@
     align-content: center;
     justify-content: space-between;
 }
+
+.same-seller-wrapper{
+    padding: 10px;
+    text-align: center;
+}
+.same-seller-wrapper .same-seller-item .item-img img{
+    width: 100px;
+    height: 100px;
+}
+.same-seller-wrapper .same-seller-item .item-img{
+    width: 40%;
+}
+.same-seller-wrapper .same-seller-item .item-info{
+    width: 60%;
+}
+.same-seller-wrapper .same-seller-item{
+    display: flex;
+}
