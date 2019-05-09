@@ -187,21 +187,38 @@ export class DetailComponent implements OnInit {
     const email = localStorage.getItem('email');
     const money: any = localStorage.getItem('money');
     const id = this.route.snapshot.paramMap.get('id');
+    const user_id =localStorage.getItem('user_id');
     if (email != null) {
-      if (money > this.product.last_price) {
-        this.msg = 'Accept to bid';
-        const user: any = {
-          id_bidder: localStorage.getItem('user_id'),
-          id_seller: this.product.id_seller,
-          id_product: this.product.id_product,
-          priceBid: this.product.last_price,
-        };
-        this.BidService.buyNow(user).subscribe(data => { });
-
+      if(parseInt(user_id)==this.product.id_seller)
+      {
+        this.msg = "Seller can't bid the product";
+        this.buy = false;
+        this.check = false;
       }
-      else {
-        this.msg = 'Your account not enough money to buy';
+      else{
+        if(parseInt(user_id)==this.product.id_seller){
+          this.msg = "You are highest bidder";
+          this.buy = false;
+          this.check = false;
+        }
+        else{
+          if (money > this.product.last_price) {
+            this.msg = 'Accept to bid';
+            const user: any = {
+              id_bidder: localStorage.getItem('user_id'),
+              id_seller: this.product.id_seller,
+              id_product: this.product.id_product,
+              priceBid: this.product.last_price,
+            };
+            this.BidService.buyNow(user).subscribe(data => { });
+          }
+          else {
+            this.msg = 'Your account not enough money to buy';
+          }
+        }
       }
+   
+    
     }
     else this.msg = 'Login before bid please';
   }
