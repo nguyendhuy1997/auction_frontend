@@ -108,6 +108,7 @@ export class DetailComponent implements OnInit {
     const email = localStorage.getItem('email');
     const money = localStorage.getItem('money');
     const curPrice = this.currentPrice;
+    const user_id =localStorage.getItem('user_id');
     console.log(curPrice);
     console.log(this.currentPrice);
 
@@ -115,32 +116,50 @@ export class DetailComponent implements OnInit {
       const id = this.route.snapshot.paramMap.get('id');
       this.ProductService.getDetail(id).subscribe(data => {
         this.product = data;
-        if (curPrice < this.product.current_price + this.product.step_price || curPrice==null) {
-          this.msg = "This price not be allow";
+        if(parseInt(user_id)==this.product.id_seller)
+        {
+          this.msg = "Seller can't bid the product";
           this.buy = false;
           this.check = false;
         }
-        else {
-          if (money < curPrice) {
-            this.msg = 'Your account not enough money to bid';
+        else{
+          if(parseInt(user_id)==this.product.id_bidder){
+            this.msg = "You are highest bidder";
             this.buy = false;
             this.check = false;
           }
-          else {
-            if (curPrice > this.product.last_price) {
-              this.msg = "Your price is over " + (this.formatNumber(curPrice - this.product.last_price)) + " buynow";
-              this.buy = true;
+          else{
+            if (curPrice < this.product.current_price + this.product.step_price || curPrice==null) {
+              this.msg = "This price not be allow";
+              this.buy = false;
               this.check = false;
             }
             else {
-              this.msg = 'Accept to bid your price pls';
-              this.buy = false;
-              this.check = true;
-
+              if (money < curPrice) {
+                this.msg = 'Your account not enough money to bid';
+                this.buy = false;
+                this.check = false;
+              }
+              else {
+                if (curPrice > this.product.last_price) {
+                  this.msg = "Your price is over " + (this.formatNumber(curPrice - this.product.last_price)) + " buynow";
+                  this.buy = true;
+                  this.check = false;
+                }
+                else {
+                  this.msg = 'Accept to bid your price pls';
+                  this.buy = false;
+                  this.check = true;
+    
+                }
+    
+              }
             }
-
           }
+
         }
+   
+
       })
     }
     else {
