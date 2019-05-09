@@ -35,8 +35,8 @@ export class DetailComponent implements OnInit {
   seller: string;
   id_bidder: any = localStorage.getItem('user_id');
   checklist: number;
-  currentPrice:any;
-  relativeProduct:Products;
+  currentPrice: any;
+  relativeProduct: Products;
 
 
   ngOnInit() {
@@ -77,12 +77,12 @@ export class DetailComponent implements OnInit {
 
     this.ProductService.getDetail(id).subscribe(data => {
       this.product = data;
-      const tempProduct={
-        id_category:this.product.category,
-        id_product:this.product.id_product
+      const tempProduct = {
+        id_category: this.product.category,
+        id_product: this.product.id_product
       }
-      this.ProductService.getRelativeProduct(tempProduct).subscribe(data=>{
-        this.relativeProduct=data;
+      this.ProductService.getRelativeProduct(tempProduct).subscribe(data => {
+        this.relativeProduct = data;
         console.log(this.relativeProduct);
       })
 
@@ -108,7 +108,7 @@ export class DetailComponent implements OnInit {
     const email = localStorage.getItem('email');
     const money = localStorage.getItem('money');
     const curPrice = this.currentPrice;
-    const user_id =localStorage.getItem('user_id');
+    const user_id = localStorage.getItem('user_id');
     console.log(curPrice);
     console.log(this.currentPrice);
 
@@ -116,20 +116,19 @@ export class DetailComponent implements OnInit {
       const id = this.route.snapshot.paramMap.get('id');
       this.ProductService.getDetail(id).subscribe(data => {
         this.product = data;
-        if(parseInt(user_id)==this.product.id_seller)
-        {
+        if (parseInt(user_id) == this.product.id_seller) {
           this.msg = "Seller can't bid the product";
           this.buy = false;
           this.check = false;
         }
-        else{
-          if(parseInt(user_id)==this.product.id_bidder){
+        else {
+          if (parseInt(user_id) == this.product.id_bidder) {
             this.msg = "You are highest bidder";
             this.buy = false;
             this.check = false;
           }
-          else{
-            if (curPrice < this.product.current_price + this.product.step_price || curPrice==null) {
+          else {
+            if (curPrice < this.product.current_price + this.product.step_price || curPrice == null) {
               this.msg = "This price not be allow";
               this.buy = false;
               this.check = false;
@@ -150,15 +149,15 @@ export class DetailComponent implements OnInit {
                   this.msg = 'Accept to bid your price pls';
                   this.buy = false;
                   this.check = true;
-    
+
                 }
-    
+
               }
             }
           }
 
         }
-   
+
 
       })
     }
@@ -171,18 +170,16 @@ export class DetailComponent implements OnInit {
   checkBuy() {
     const email = localStorage.getItem('email');
     const money: any = localStorage.getItem('money');
-    const user_id =localStorage.getItem('user_id');
+    const user_id = localStorage.getItem('user_id');
     if (email != null) {
-      if(parseInt(user_id)==this.product.id_seller)
-      {
-        this.msg = "Seller can't bid the product";
-
+      if (parseInt(user_id) == this.product.id_seller) {
+        this.msgBuy = "Seller can't bid the product";
       }
-      else{
-        if(parseInt(user_id)==this.product.id_bidder){
-          this.msg = "You are highest bidder";
+      else {
+        if (parseInt(user_id) == this.product.id_bidder) {
+          this.msgBuy = "You are highest bidder";
         }
-        else{
+        else {
           if (money < this.product.last_price) {
             this.msgBuy = "Your account not enough money to buy";
           }
@@ -191,7 +188,6 @@ export class DetailComponent implements OnInit {
           }
         }
       }
-     
     }
     else {
       this.msgBuy = "Login before bid please";
@@ -201,7 +197,7 @@ export class DetailComponent implements OnInit {
     const email = localStorage.getItem('email');
     const money: any = localStorage.getItem('money');
     const id = this.route.snapshot.paramMap.get('id');
-    
+
     if (email != null) {
       if (money > this.product.last_price) {
         this.msg = 'Accept to bid';
@@ -243,27 +239,25 @@ export class DetailComponent implements OnInit {
 
   wishList() {
 
-    if(localStorage.getItem('user_id')!=null)
-    {
-      if(this.checklist==1)
-      {
-        this.checklist=0;
+    if (localStorage.getItem('user_id') != null) {
+      if (this.checklist == 1) {
+        this.checklist = 0;
       }
-      else this.checklist=1;
+      else this.checklist = 1;
       const user = {
         id_user: localStorage.getItem('user_id'),
         id_product: this.product.id_product,
         status: this.checklist,
-      } 
+      }
       this.ProductService.wishlist(user).subscribe(data => {
       })
-      
+
     }
-    else{
+    else {
       alert('Login first to add to wishlist');
     }
-    
-   
+
+
   }
   statusWishlist() {
     const user = {
