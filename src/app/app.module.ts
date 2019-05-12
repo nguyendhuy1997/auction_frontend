@@ -22,7 +22,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LastBidComponent } from './components/last-bid/last-bid.component';
-import { WishlistComponent } from './views/wishlist/wishlist.component'; 
+import { WishlistComponent } from './views/wishlist/wishlist.component';
+import { AboutComponent } from './views/about/about.component';
+import { ContactComponent } from './views/contact/contact.component'; 
 
 
 @NgModule({
@@ -41,6 +43,8 @@ import { WishlistComponent } from './views/wishlist/wishlist.component';
     PostComponent,
     LastBidComponent,
     WishlistComponent,
+    AboutComponent,
+    ContactComponent,
 
   ],
   imports: [

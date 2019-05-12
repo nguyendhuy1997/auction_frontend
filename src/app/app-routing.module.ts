@@ -8,11 +8,15 @@ import { CategoryComponent } from './views/category/category.component';
 import {HistoryComponent} from './views/history/history.component';
 import {PostComponent} from './views/post/post.component';
 import {WishlistComponent} from './views/wishlist/wishlist.component';
+import {ContactComponent} from './views/contact/contact.component';
+import {AboutComponent} from './views/about/about.component';
 
 
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
+  { path: 'about', component: AboutComponent },
+  { path: 'contact', component: ContactComponent },
   { path: 'detail/:id', component: DetailComponent},
   { path: 'category/:id', component: CategoryComponent},
   { path: 'login', component: LoginComponent},
