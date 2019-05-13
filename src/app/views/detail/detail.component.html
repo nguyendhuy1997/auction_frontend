@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="desc1-left col-md-6">
                     <!-- <img src="/assets/images/{{product.image}}" class="img-fluid" alt=""> -->
-                    <img src="https://auctionbackend.herokuapp.com/storage/{{product.image}}" height="500px" width="300px" alt="" />
+                    <img src="https://auctionbackend.herokuapp.com/storage/{{product.image}}" height="500px" width="300px" style="object-fit: contain" alt="" />
                 </div>
                 <div class="desc1-right col-md-6 pl-lg-4">
                     <div style="display: flex; justify-content: space-between; align-items: center">
@@ -33,7 +33,7 @@
                             <p style="font-size:15px; ">{{formatNumber(product.step_price)}} đ</p>
                         </div>
                         <div class="detail-info">
-                            <p style="font-size:15px; color:red">{{formatNumber(product.last_price)}} đ</p>
+                            <p style="font-size:30px;  color:red">{{formatNumber(product.last_price)}} đ</p>
                             <button data-toggle="modal" data-target="#buyNowModal" (click)="checkBuy()" id="buynow">BUYNOW</button>
                         </div>
                         <div class="available mt-3">
